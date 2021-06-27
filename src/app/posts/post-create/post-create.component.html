@@ -7,14 +7,18 @@
       name = "title"
       ngModel
       required
+      placeholder="Title"
       #title = "ngModel">
       <mat-error *ngIf="title.invalid">Please Enter Title</mat-error>
     </mat-form-field>
+
+    
     <mat-form-field>
       <textarea matInput rows = "6"
       name = "content"
       ngModel
       required
+      placeholder="Content"
       #content = "ngModel">
       </textarea>
       <mat-error *ngIf="content.invalid">Please Enter Content</mat-error>
@@ -23,7 +27,7 @@
     <button mat-raised-button
     color="accent"
     type="submit">
-      Save Post
+      SAVE POST
     </button>
   </form>
 </mat-card>
