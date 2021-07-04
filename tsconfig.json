@@ -5,11 +5,7 @@
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
-<<<<<<< HEAD
-    "strict": false,
-=======
     "strict": true,
->>>>>>> f1692ce (Fixed issues with bodyParser)
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,

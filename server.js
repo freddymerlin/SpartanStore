@@ -6,18 +6,12 @@ const normalizePort = val => {
   var port = parseInt(val, 10);
 
   if (isNaN(port)) {
-<<<<<<< HEAD
-=======
     // named pipe
->>>>>>> f1692ce (Fixed issues with bodyParser)
     return val;
   }
 
   if (port >= 0) {
-<<<<<<< HEAD
-=======
     // port number
->>>>>>> f1692ce (Fixed issues with bodyParser)
     return port;
   }
 
