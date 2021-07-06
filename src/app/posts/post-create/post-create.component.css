@@ -14,8 +14,20 @@ mat-form-field:first-of-type{
   margin-bottom: 2rem;
 }
 
+input[type="file"]{
+  visibility: hidden;
+}
+
 
 .mat-spinner{
   margin: auto;
   margin-top: 10vh;
+}
+
+.image-preview{
+  height: 5rem;
+  margin: 1rem 0;
+}
+.image-preview img{
+  height: 100%;
 }

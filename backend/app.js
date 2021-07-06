@@ -3,7 +3,7 @@ const app = express();
 const postsRoutes = require("./routes/posts");
 const mongoose = require('mongoose');
 const { createShorthandPropertyAssignment } = require('typescript');
-
+const path = require('path');
 
 mongoose.connect("mongodb+srv://mean-guy:ms4oLOh2E0ohtcEo@mean-recap.na2pg.mongodb.net/mean-db?retryWrites=true&w=majority",  {useNewUrlParser: true, useUnifiedTopology: true})
 .then(()=>{
@@ -15,7 +15,7 @@ mongoose.connect("mongodb+srv://mean-guy:ms4oLOh2E0ohtcEo@mean-recap.na2pg.mongo
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-
+app.use("/images", express.static(path.join("backend/images")));
 app.use((req,res,next)=>{
   res.setHeader('Access-Control-Allow-Origin', "*");
   res.setHeader('Access-Control-Allow-Headers', "Origin, X-Requested-With, Content-Type, Accept");
@@ -24,6 +24,7 @@ app.use((req,res,next)=>{
   )
   next();
 });
+
 
 app.use('/posts', postsRoutes);
 
