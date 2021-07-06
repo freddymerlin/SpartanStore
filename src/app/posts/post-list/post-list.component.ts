@@ -12,18 +12,21 @@ import { PostsService } from "../posts.service";
 })
 export class PostListComponent implements OnInit, OnDestroy {
   posts:Post[] = [];
+  isLoading = false;
   private postsSub!: Subscription;
   constructor(public postsService: PostsService){}
   ngOnInit()
   {
+    this.isLoading = true;
     this.postsService.getPosts();
     this.postsSub = this.postsService.getPostUpdateListener()
     .subscribe((posts: Post[])=>{
+      this.isLoading = false;
       this.posts = posts;
     });
   }
 
-  onDelete(postId: string){
+  onDelete(postId: string|null){
     this.postsService.deletePost(postId)
   }
   ngOnDestroy(){

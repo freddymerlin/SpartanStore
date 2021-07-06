@@ -13,3 +13,9 @@ mat-form-field, textarea{
 mat-form-field:first-of-type{
   margin-bottom: 2rem;
 }
+
+
+.mat-spinner{
+  margin: auto;
+  margin-top: 10vh;
+}
