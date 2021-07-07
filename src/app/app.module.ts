@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PostListComponent } from './posts/post-list/post-list.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { HttpClientModule } from '@angular/common/http';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { AppRoutingModule } from './app-routing.module';
 import { MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 @NgModule({
@@ -23,6 +24,7 @@ import { MatProgressSpinnerModule} from '@angular/material/progress-spinner'
   ],
   imports: [
     BrowserModule,
+    MatPaginatorModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatInputModule,
