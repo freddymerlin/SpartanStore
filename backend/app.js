@@ -1,11 +1,12 @@
 const express = require('express')
 const app = express();
 const postsRoutes = require("./routes/posts");
+const userRoutes = require("./routes/user");
 const mongoose = require('mongoose');
 const { createShorthandPropertyAssignment } = require('typescript');
 const path = require('path');
 
-mongoose.connect("mongodb+srv://mean-guy:ms4oLOh2E0ohtcEo@mean-recap.na2pg.mongodb.net/mean-db?retryWrites=true&w=majority",  {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect("mongodb+srv://mean-guy:ms4oLOh2E0ohtcEo@mean-recap.na2pg.mongodb.net/mean-db?&w=majority",  {useNewUrlParser: true, useUnifiedTopology: true})
 .then(()=>{
   console.log('Database Connected!');
 })
@@ -27,5 +28,6 @@ app.use((req,res,next)=>{
 
 
 app.use('/posts', postsRoutes);
+app.use('/user', userRoutes);
 
 module.exports = app;

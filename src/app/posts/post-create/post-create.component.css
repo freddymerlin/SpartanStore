@@ -6,9 +6,6 @@ button{
   margin-top: 2rem;
 }
 
-mat-form-field, textarea{
-  width: 100%;
-}
 
 mat-form-field:first-of-type{
   margin-bottom: 2rem;
@@ -16,6 +13,10 @@ mat-form-field:first-of-type{
 
 input[type="file"]{
   visibility: hidden;
+}
+
+mat-form-field, textarea{
+  width: 100%;
 }
 
 
