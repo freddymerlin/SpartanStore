@@ -31,16 +31,15 @@ router.post('', checkAuth, multer({storage: storage}).single('image'),(req,res,n
   const post = new Post({
     title : req.body.title,
     content : req.body.content,
-    imagePath: url + "/images/" + req.file.filename
+    imagePath: url + "/images/" + req.file.filename,
+    creator: req.userData.userId
   });
   post.save().then(result=>{
     res.status(201).json({
       message: "Post Added Successfully",
       post: {
-        id: result._id,
-        title: result.title,
-        content: result.content,
-        imagePath: result.imagePath
+        ...result,
+        id: result._id
       }
     });
   });
@@ -57,6 +56,7 @@ router.get('/:id', (req, res, next) => {
     }
   })
 });
+
 router.put('/:id', checkAuth, multer({storage: storage}).single('image'),
 (req, res, next)=>{
   let imagePath = req.body.imagePath;
@@ -68,15 +68,24 @@ router.put('/:id', checkAuth, multer({storage: storage}).single('image'),
     _id: req.body.id,
     title: req.body.title,
     content: req.body.content,
-    imagePath: imagePath
+    imagePath: imagePath,
+    creator: req.userData.userId
   });
   //console.log(req.body.content);
-  Post.updateOne({_id: req.params.id}, post)
+  Post.updateOne({_id: req.params.id, creator: req.userData.userId}, post)
   .then(result=>{
-    console.log(result);
-    res.status(200).json({
-      message: "Updated!"
-    });
+    if (result.nModified >0){
+      res.status(200).json({
+        message: "Updated!"
+      });
+    }
+    else{
+      res.status(401).json({
+        message: "Not Authorized!"
+      });
+    }
+
+
   });
 });
 
@@ -105,9 +114,17 @@ router.get('', (req,res,next)=>{
 });
 
 router.delete("/:id", checkAuth, (req, res, next)=>{
-  Post.deleteOne({_id: req.params.id}).then(result=>{
-    console.log(result)
-    res.status(200).json({message: "Post Deleted"});
+  Post.deleteOne({_id: req.params.id, creator: req.userData.userId}).then(result=>{
+    if (result.n >0){
+      res.status(200).json({
+        message: "Post Deleted!"
+      });
+    }
+    else{
+      res.status(401).json({
+        message: "Not Authorized!"
+      });
+    }
   });
 });
 
