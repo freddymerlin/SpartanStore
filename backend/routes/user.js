@@ -5,7 +5,6 @@ const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 
 router.post("/signup", (req, res, next)=>{
-  console.log("\n\n\n", req.body.password);
   bcrypt.hash(req.body.password, 10)
     .then(hash =>{
       const user = new User({
@@ -21,7 +20,7 @@ router.post("/signup", (req, res, next)=>{
         })
         .catch(err=>{
           res.status(500).json({
-            error: err
+              message: 'Email already exists!'
           });
         });
     });
@@ -57,7 +56,7 @@ router.post("/login", (req, res, next)=>{
         })
         .catch(err=>{
           return res.status(401).json({
-            message: 'Auth Failed!'
+            message: 'Invalid authentication credentials!'
           })
         });
     });

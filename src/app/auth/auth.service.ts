@@ -16,10 +16,12 @@ export class AuthService{
   createUser(email:string, password:string){
     const authData: AuthData = {email: email, password: password};
     this.http.post("http://localhost:3000/user/signup", authData)
-      .subscribe(response=>{
-        console.log(response);
+      .subscribe(()=>{
+        this.router.navigate(['/']);
+      },error => {
+        this.authStatusListener.next(false);
       })
-    this.router.navigate(['/']);
+
 
   }
   getAuthStatusListener(){
@@ -80,7 +82,9 @@ export class AuthService{
           this.router.navigate(['/']);
         }
 
-      })
+      }, error =>{
+        this.authStatusListener.next(false);
+      });
 
   }
   private setAuthTimer(duration: number){
