@@ -7,7 +7,7 @@ const { createShorthandPropertyAssignment } = require('typescript');
 const path = require('path');
 mongoose.set('useCreateIndex', true);
 
-mongoose.connect("mongodb+srv://mean-guy:ms4oLOh2E0ohtcEo@mean-recap.na2pg.mongodb.net/mean-db?&w=majority",  {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect("mongodb+srv://mean-guy:" + process.env.MONGO_ATLAS + "@mean-recap.na2pg.mongodb.net/mean-db?&w=majority",  {useNewUrlParser: true, useUnifiedTopology: true})
 .then(()=>{
   console.log('Database Connected!');
 })
