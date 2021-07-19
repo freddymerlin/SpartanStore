@@ -15,6 +15,10 @@ mongoose.connect("mongodb+srv://mean-guy:" + process.env.MONGO_ATLAS + "@mean-re
   console.log('Database Not Connected!');
 });
 
+app.use(express.static(path.join(__dirname,"../dist/first-test")));
+
+
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use("/images", express.static(path.join("backend/images")));
@@ -30,5 +34,10 @@ app.use((req,res,next)=>{
 
 app.use('/posts', postsRoutes);
 app.use('/user', userRoutes);
+
+app.use('/*', (req, res, next) => {
+  res.sendFile(path.join(__dirname, "../dist/first-test/index.html"));
+});
+
 
 module.exports = app;
