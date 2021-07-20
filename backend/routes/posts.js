@@ -3,8 +3,17 @@ const router = express.Router();;
 const PostController = require('../controllers/posts');
 const checkAuth = require('../middleware/check-auth');
 const extractFile = require('../middleware/file')
+const {uploadFile, getFileStream} = require('../s3')
 
-router.post('', checkAuth, extractFile, PostController.createPost);
+router.post('', checkAuth, extractFile,
+async (req,res, next) => {
+  console.log(req.file)
+  const result = await uploadFile(req.file)
+  console.log(result)
+  next();
+  },
+PostController.createPost);
+
 router.get('/:id', PostController.fetchPostId);
 router.put('/:id', checkAuth, extractFile, PostController.editPost);
 router.get('', PostController.fetchPosts);

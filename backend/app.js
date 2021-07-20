@@ -5,6 +5,7 @@ const userRoutes = require("./routes/user");
 const mongoose = require('mongoose');
 const { createShorthandPropertyAssignment } = require('typescript');
 const path = require('path');
+const {uploadFile, getFileStream} = require('./s3')
 mongoose.set('useCreateIndex', true);
 
 mongoose.connect("mongodb+srv://mean-guy:" + process.env.MONGO_ATLAS + "@mean-recap.na2pg.mongodb.net/mean-db?&w=majority",  {useNewUrlParser: true, useUnifiedTopology: true})
@@ -21,7 +22,7 @@ app.use(express.static(path.join(__dirname,"../dist/first-test")));
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use("/images", express.static(path.join("backend/images")));
+
 app.use((req,res,next)=>{
   res.setHeader('Access-Control-Allow-Origin', "*");
   res.setHeader('Access-Control-Allow-Headers', "Origin, authorization, X-Requested-With, Content-Type, Accept");
@@ -32,6 +33,11 @@ app.use((req,res,next)=>{
 });
 
 
+app.get("/images/:key", (req, res)=>{
+  const key = req.params.key
+  const readStream = getFileStream(key)
+  readStream.pipe(res)
+})
 app.use('/posts', postsRoutes);
 app.use('/user', userRoutes);
 
