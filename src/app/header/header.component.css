@@ -1,6 +1,12 @@
 a{
   text-decoration: none;
-  color: white;
+
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  color: black;
+}
+a .store{
+  color: #056C0A;
 }
 
 ul{
@@ -13,3 +19,57 @@ ul{
 .spacer{
   flex: 1 1 auto;
 }
+
+mat-toolbar{
+  background-color: #F8F8F8;
+  justify-content: center;
+  height: 44px;
+}
+ul li a:hover {
+  background-color: #D1FFD3;
+}
+
+.container{
+  width: 100%;
+  display: flex;
+  max-width: 80vw;
+  justify-content: space-between;
+  align-items: center;
+}
+ul li .active{
+  color: #056C0A;
+}
+
+span:first-of-type{
+  position: relative;
+}
+
+svg { position: absolute;
+top: 4px;
+right: -20px;}
+
+a:first-of-type:hover > svg path{
+  stroke : #056C0A;
+}
+
+span:first-of-type .active > svg path {
+  stroke: #056C0A;
+
+}
+
+ul li a{
+  font-size: 1rem;
+  padding-top: 4px;
+  min-height: 44px;
+}
+
+@media screen and (max-width: 410px) {
+  .store-name{
+    display: none
+  }
+  svg{
+    top: -10px;
+  }
+}
+
+

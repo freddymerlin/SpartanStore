@@ -1,33 +1,47 @@
 <mat-spinner *ngIf = "isLoading"></mat-spinner>
-<mat-card>
-  <form #loginForm="ngForm" (submit)="onLogin(loginForm)" *ngIf = "!isLoading">
-    <mat-form-field>
-      <input
-      matInput
-      type="email"
-      name = "email"
-      ngModel
-      #emailInput = "ngModel"
-      placeholder="E-Mail"
-      required
-      email>
-      <mat-error *ngIf="emailInput.invalid" >Please Enter Valid Email</mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      <input type="password"
-      name = "password"
-      ngModel
-      #passwordInput = "ngModel"
-      matInput
-      required
-      placeholder="Password">
-      <mat-error *ngIf="passwordInput.invalid">Please Enter a Valid Password</mat-error>
-    </mat-form-field>
-    <button *ngIf ="!isLoading" mat-raised-button
-    color="accent"
-    type="submit">
-      Login
-    </button>
-  </form>
-</mat-card>
+<div class="main-container" *ngIf = "!isLoading">
+  <div class="tint">
+
+  </div>
+  <div class="text-content">
+    <h1>
+      Welcome back,
+    </h1>
+    <h1>
+      Spartan
+    </h1>
+  </div>
+  <mat-card>
+    <form #loginForm="ngForm" (submit)="onLogin(loginForm)" *ngIf = "!isLoading">
+      <mat-form-field>
+        <input
+        matInput
+        type="email"
+        name = "email"
+        ngModel
+        #emailInput = "ngModel"
+        placeholder="Email"
+        required
+        email>
+        <mat-error *ngIf="emailInput.invalid" >Please Enter Valid Email</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="password"
+        name = "password"
+        ngModel
+        #passwordInput = "ngModel"
+        matInput
+        required
+        placeholder="Password">
+        <mat-error *ngIf="passwordInput.invalid">Please Enter a Valid Password</mat-error>
+      </mat-form-field>
+      <button *ngIf ="!isLoading" mat-raised-button
+      id = "action-button"
+      color="accent"
+      type="submit">
+        Login
+      </button>
+    </form>
+  </mat-card>
+</div>
 
