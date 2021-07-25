@@ -21,3 +21,6 @@
 mat-paginator{
   margin-top: 2rem;
 }
+.container{
+  min-height: calc(100vh - 116px);
+}

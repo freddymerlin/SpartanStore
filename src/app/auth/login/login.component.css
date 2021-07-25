@@ -26,8 +26,9 @@ mat-card{
   flex-direction: column;
   position: relative;
   align-items: center;
+  min-height: 500px;
   width: 80vw;
-  height: calc(100vh - 67px);
+  height: calc(100vh - 87px);
   background-image: linear-gradient(rgba(0, 0, 50, 0.6), rgba(0, 0 , 25, 0.6)), url('https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=755&q=80');
   background-repeat: no-repeat;
   background-size: cover;
@@ -74,26 +75,26 @@ h1{
 }
 
 
-@media screen and (max-width: 928px) {
+@media screen and (max-width: 865px) {
   .text-content h1:first-of-type{
-    font-size: 6vw;
+    font-size: 9vw;
   }
   .text-content h1{
     font-size: 13vw;
   }
 }
 
-@media screen and (max-width: 741px) {
+@media screen and (max-width: 928px) {
   .text-content{
     text-align: center;
+    padding-right: 0px;
   }
   .text-content h1:first-of-type{
     height: fit-content;
-    font-size: 6vw;
   }
   .text-content h1{
     height: fit-content;
-    line-height: 60px;
+    line-height: 70px;
 
   }
 }
@@ -109,5 +110,14 @@ h1{
     height: fit-content;
     line-height: 40px;
 
+  }
+}
+@media screen and (max-width: 539px) {
+  #action-button{
+    top: 78%;
+    right: 30%;
+  }
+  mat-card{
+    height: 192px;
   }
 }
