@@ -1,7 +1,7 @@
 main
 {
-  width: 80%;
-  margin: auto;
-
+  display: flex;
+  width: 100%;
+  justify-content: center;
 }
 

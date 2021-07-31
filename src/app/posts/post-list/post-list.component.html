@@ -1,22 +1,81 @@
 <mat-spinner *ngIf = "isLoading"></mat-spinner>
-<div class="container">
+<div   [style.display]="isLoading?'none': 'block'" class="hero-content">
+  <div class="header-content">
+    <img src="https://st4.depositphotos.com/25557058/40668/v/600/depositphotos_406688956-stock-illustration-one-single-line-drawing-young.jpg" alt="shopping-image">
+    <p>
+      Welcome to
+    </p>
+    <p>
+      The <span>Spartan</span>Store
+    </p>
+  </div>
+  <div class="lower">
+    <div class="sub-head-1">
+      <div class="text-box">
+        <p>Want to <span>Sell?</span></p>
+        <p>Become a <span>member.</span></p>
+        <p>Sell to the <span>spartans</span> directly.</p>
+      </div>
+    </div>
+    <div class="sub-head-2">
+      <div class="text-box">
+        <p>Want to <span>Buy?</span></p>
+        <p><span>Look</span> around.</p>
+        <p>Contact the <span>seller</span> directly.</p>
+      </div>
+    </div>
+  </div>
+  <div class="lower-sm">
+    <div class="text-box">
+      <p>Want to <span>Sell?</span></p>
+      <p>Become a <span>member.</span></p>
+      <p>Sell to the <span>spartans</span> directly.</p>
+    </div>
+  </div>
+  <div class="lower-sm">
+    <div class="text-box">
+      <p>Want to <span>Buy?</span></p>
+      <p><span>Look</span> around.</p>
+      <p>Contact the <span>seller</span> directly.</p>
+    </div>
+  </div>
+  <div class="sc">
+    <a href="#listings">
+      <button class="scroll-button">
+
+      </button>
+    </a>
+
+  </div>
+</div>
+<div  [hidden]="isLoading" #listings id="listings" class="container">
+  <p class="second-title">
+    For <br><span>Spartans.</span><br> By <br><span>Spartans.</span>
+  </p>
   <mat-accordion *ngIf="posts.length > 0 && !isLoading">
     <mat-expansion-panel *ngFor="let post of posts">
       <mat-expansion-panel-header>
         {{post.title}}
       </mat-expansion-panel-header>
-      <div class="post-image">
-        <img [src]="post.imagePath" [alt]="post.title">
+      <div *ngFor="let picture of post.imagePath" class="post-image">
+        <img src={{picture}} [alt]="post.title">
+
       </div>
       {{post.content}}
+      {{post.contact}}
       <mat-action-row *ngIf="userAuth && userId === post.creator">
         <a mat-button [routerLink]="['/edit', post.id]"color="primary">EDIT</a>
         <button mat-button color="warn" (click) = "onDelete(post.id)">DELETE</button>
       </mat-action-row>
     </mat-expansion-panel>
   </mat-accordion>
-  <mat-paginator (page)= "onChangdPage($event)" [pageSizeOptions] = "pageSizeOptions"
-  *ngIf="posts.length > 0" [length] = "totalPosts" [pageSize] ="postsPerPage"></mat-paginator>
+  <mat-paginator
+
+    [length]="totalPosts" [pageSize]="postsPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)"
+  *ngIf="posts.length > 0" ></mat-paginator>
+
+
+
   <p class = "mat-body-1 info-text" *ngIf="posts.length <= 0 && !isLoading">
     No Post added Yet!
   </p>

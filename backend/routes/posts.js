@@ -7,15 +7,27 @@ const {uploadFile, getFileStream} = require('../s3')
 
 router.post('', checkAuth, extractFile,
 async (req,res, next) => {
-  console.log(req.file)
-  const result = await uploadFile(req.file)
-  console.log(result)
+  req.files.forEach( async element => {
+    console.log(element)
+    const result = await uploadFile(element)
+    console.log(result)
+  });
   next();
   },
 PostController.createPost);
 
 router.get('/:id', PostController.fetchPostId);
-router.put('/:id', checkAuth, extractFile, PostController.editPost);
+
+router.put('/:id', checkAuth, extractFile,
+async (req,res, next) => {
+  req.files.forEach(async element => {
+    console.log(element)
+    const result = await uploadFile(element)
+    console.log(result)
+  });
+  next();
+  },
+PostController.editPost);
 router.get('', PostController.fetchPosts);
 router.delete("/:id", checkAuth, PostController.deletePost);
 

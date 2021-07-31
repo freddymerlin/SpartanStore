@@ -1,14 +1,22 @@
 const Post = require('../models/post');
 
 exports.createPost = (req,res,next)=>{
+
   const url = req.protocol + '://' + req.get("host");
-  imagePath =  url + "/images/" + req.file.filename
+  let imageArray = [];
+  req.files.forEach(element => {
+    path =  url + "/images/" + element.filename
+    imageArray.push(path)
+  });
+
   const post = new Post({
     title : req.body.title,
     content : req.body.content,
-    imagePath: imagePath,
+    imagePath: imageArray,
+    contact: req.body.contact,
     creator: req.userData.userId
   });
+
   post.save().then(result=>{
     res.status(201).json({
       message: "Post Added Successfully",
@@ -20,7 +28,7 @@ exports.createPost = (req,res,next)=>{
   })
   .catch(error =>{
     res.status(500).json({
-      message: "Creation of new post failed!"
+      message: "Creation of new post failed!",
     });
   });
 }
@@ -43,18 +51,25 @@ exports.fetchPostId = (req, res, next) => {
 
 exports.editPost = (req, res, next)=>{
   let imagePath = req.body.imagePath;
-  if(req.file){
-    const url = req.protocol + '://' + req.get("host");
-    imagePath =  url + "/images/" + req.file.filename
+  let imageArray = [];
+  const url = req.protocol + '://' + req.get("host");
+  if(req.files){
+    req.files.forEach(element => {
+      path =  url + "/images/" + element.filename
+      imageArray.push(path)
+    });
+    imagePath = imageArray
   }
+
   const post = new Post({
     _id: req.body.id,
     title: req.body.title,
     content: req.body.content,
     imagePath: imagePath,
-    creator: req.userData.userId
+    creator: req.userData.userId,
+    contact: req.body.contact
   });
-  //console.log(req.body.content);
+
   Post.updateOne({_id: req.params.id, creator: req.userData.userId}, post)
   .then(result=>{
     if (result.n > 0){

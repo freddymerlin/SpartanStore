@@ -43,11 +43,12 @@ export class PostListComponent implements OnInit, OnDestroy {
     });
   }
 
-  onChangdPage(pageData: PageEvent){
+  onChangedPage(pageData: PageEvent){
     this.isLoading = true;
     this.currentPage = pageData.pageIndex + 1;
     this.postsPerPage = pageData.pageSize;
     this.postsService.getPosts(this.postsPerPage, this.currentPage);
+    this.isLoading = false;
   }
 
   onDelete(postId: string|null){
@@ -62,5 +63,7 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.postsSub.unsubscribe();
     this.authStatusSub.unsubscribe();
   }
+
+
 }
 

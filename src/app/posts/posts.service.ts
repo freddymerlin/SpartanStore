@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router'
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { convertActionBinding } from '@angular/compiler/src/compiler_util/expression_converter';
+
 
 const BACKEND_URL = environment.apiUrl + '/posts'
 @Injectable({providedIn: 'root'})
@@ -24,6 +26,7 @@ export class PostsService {
           content: post.content,
           id: post._id,
           imagePath: post.imagePath,
+          contact: post.contact,
           creator: post.creator
         };
       }), maxPosts: postData.maxPosts}
@@ -37,15 +40,18 @@ export class PostsService {
     });
 
   }
-  updatePost(id:string | null, title: string, content: string, image: File | string){
-    let postData: Post | FormData;
-    if (typeof(image) === 'object'){
+  updatePost(id:string | null, title: string, content: string, image: FileList, contact: string){
+    let postData: any;
+    if (typeof(image) === 'object' ){
       postData = new FormData();
       postData.append("id", id);
       postData.append("title", title);
       postData.append("content", content);
-      postData.append("image", image, title)
-
+      const imageArr = Array.from(image);
+      imageArr.forEach(image => {
+        postData.append('image', image);
+      });
+      postData.append("contact", contact);
 
     }else{
       postData = {
@@ -53,6 +59,7 @@ export class PostsService {
         title: title,
         content: content,
         imagePath: image,
+        contact: contact,
         creator: ""
       };
     }
@@ -75,19 +82,24 @@ export class PostsService {
       _id: string;
       title: string;
       content: string;
-      imagePath: string;
+      imagePath: string[];
+      contact: string;
       creator: string;
 
     }>(BACKEND_URL+'/'+ id);
 
   }
 
-  addPost(title:string, content: string, image: File)
+  addPost(title:string, content: string, image: FileList, contact: string)
   {
     const postData = new FormData();
     postData.append("title", title);
     postData.append("content", content);
-    postData.append("image", image, title)
+    const imageArr = Array.from(image);
+    imageArr.forEach(image => {
+      postData.append('image', image);
+    });
+    postData.append("contact", contact)
     this.http.post<{message:string, post: Post}>(BACKEND_URL, postData)
     .subscribe((responseData)=>{
 
