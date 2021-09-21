@@ -32,7 +32,7 @@
       <p>Sell to the <span>spartans</span> directly.</p>
     </div>
   </div>
-  <div class="lower-sm">
+  <div class="lower-sm down">
     <div class="text-box">
       <p>Want to <span>Buy?</span></p>
       <p><span>Look</span> around.</p>
@@ -54,15 +54,47 @@
   </p>
   <mat-accordion *ngIf="posts.length > 0 && !isLoading">
     <mat-expansion-panel *ngFor="let post of posts">
-      <mat-expansion-panel-header>
+      <mat-expansion-panel-header class = "title" (click) = "open()">
         {{post.title}}
       </mat-expansion-panel-header>
-      <div *ngFor="let picture of post.imagePath" class="post-image">
-        <img src={{picture}} [alt]="post.title">
+      <div class="post">
+        <div class="images">
+          <div class="image-gallary">
+            <div *ngFor="let picture of post.imagePath.slice(0, 2)" class="post-image">
+              <img src={{picture}} [alt]="post.title">
+            </div>
+            <div class="add">
+              <div class="add-inner">
+                <div (click) = "addMore()"><svg class = "plus" width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g opacity="0.8">
+                  <path class = "fill" d="M9 13.5H4.5V49.5H40.5V45H9V13.5ZM49.5 4.5H13.5V40.5H49.5V4.5ZM42.75 24.75H33.75V33.75H29.25V24.75H20.25V20.25H29.25V11.25H33.75V20.25H42.75V24.75Z" fill="#ADD8AE"/>
+                  </g>
+                  </svg>
+                </div>
+              </div >
+            </div>
+          </div>
+          <div class="gallary" *ngIf = "add">
+            <div *ngFor="let picture of post.imagePath.slice(2, post.imagePath.length)" class="post-image">
+              <img src={{picture}} [alt]="post.title">
+            </div>
+          </div>
 
+        </div>
+        <div class="post-info">
+          <div class="description"><p class="description">Description:</p><br>
+            <p class="content">
+              {{post.content}}
+            </p>
+          </div>
+          <div class="contact">
+            Contact: &nbsp;
+            <button (click) = "copy(post.contact)" class="contact-button">
+              {{post.contact}}
+            </button>
+            </div>
+        </div>
       </div>
-      {{post.content}}
-      {{post.contact}}
       <mat-action-row *ngIf="userAuth && userId === post.creator">
         <a mat-button [routerLink]="['/edit', post.id]"color="primary">EDIT</a>
         <button mat-button color="warn" (click) = "onDelete(post.id)">DELETE</button>

@@ -6,6 +6,28 @@
   text-align: center;
 }
 
+.add{
+  width: 33.3%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 10px!important;
+}
+.add-inner{
+  background-color: #DBFFDC;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  border-radius: 8%;
+  justify-content: center;
+  height: 70%;
+}
+
+svg :hover{
+
+}
+
+
 .mat-expansion-panel{
   margin-top: 2rem;
 }
@@ -13,27 +35,55 @@
   margin: auto;
   margin-top: 10vh;
 }
-.post-image{
-  max-width: 50vw;
-  margin-bottom: 2rem;
+
+.images{
+
+  display: flex;
+  width: 60%;
+  float: left;
+  flex-direction: column;
 }
+.image-gallary{
+  display: flex;
+  margin-bottom: 10px;
+  flex-direction: row;
+}
+.gallary{
+  display: flex;
+
+  flex-direction: row;
+}
+.post-image {
+  margin-right: 10px;
+  max-height: 20vh;
+  width: 33.33%;
+}
+
 .post-image img{
+  object-fit: cover;
+  border-radius: 8%;
   width: 100%;
+  height: 20vh;
   box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
 }
 mat-paginator{
   margin-top: 2rem;
 }
 .container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 40px;
   width: calc(80vw - 80px);
   min-height: calc(100vh - 83px );
+
   background-size: cover;
   background-repeat: no-repeat;
   background-image:  linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.2))
   ,url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80');
 
 }
+
 .hero-content{
   display: flex;
   overflow: hidden;
@@ -106,6 +156,10 @@ mat-paginator{
   background-color: white;
   height: 100%;
   float: left;
+}
+
+.down{
+  background-color: #EFFFF0;
 }
 
 .sub-head-2{
@@ -182,6 +236,38 @@ mat-paginator{
   top: 30%;
   animation-delay: .3s;
 }
+
+.post{
+  width: 100%;
+  min-height: 20vh;
+}
+
+.height{
+  height: calc(40vh)!important;
+}
+.post-info{
+  padding: 10px;
+  padding-top: 0px;
+  float: right;
+  width: calc(40% - 20px);
+  height: calc(20vh);
+  position: relative;
+}
+
+.contact-button{
+  padding-left: 5px;
+  font-size: 0.8em;
+}
+.contact{
+  position: absolute;
+  bottom: 10%;
+}
+
+.post-info{
+  padding-left: 0;
+  padding-right: 0;
+}
+
 @keyframes scroll-button{
   0%{
     opacity: 0;
@@ -198,9 +284,48 @@ mat-paginator{
   }
 }
 
+.contact{
+  height: 32px;
+  width: 100%;
 
+}
+.contact-button{
+  height: 100%;
+  width: 70%;
+  min-width: 190px;
+  font-weight:600;
+  border: 2px solid #c9ffcb !important;
+  background-color: #DBFFDC;
+  color: black;
+  border-radius: 16px;
+  transition: all 0.5s;
 
+}
+.contact-button:hover{
+  background-color: white;
+}
+.description{
+  position: relative;
+  width: fit-content;
+  font-size: 1.03em;
+  font-weight: 700;
+  top: -28.5px ;
+}
+.content{
+  margin-top: 0px;
+}
+.content{
+  font-weight: 500;
+  font-size: 1.0em;
+}
+.contact{
+  font-weight: 700;
+  font-size: 1.03em;
+}
 
+.mat-expansion-panel-header{
+  font-weight: 700;
+}
 
 @media screen and (max-width: 859px) {
   .header-content{
@@ -384,6 +509,9 @@ br{
   }
 
 }
+mat-expansion-panel {
+  max-width: 1079px;
+}
 
 @media screen and (max-width: 890px){
   br:nth-last-of-type(2){
@@ -396,3 +524,62 @@ br{
     display: block;
   }
 }
+
+@media screen and (max-width: 1048px){
+  .contact{
+    text-align: center;
+    bottom: 15%;
+  }
+
+}
+
+
+svg path{
+  transition: fill 0.8s;
+}
+.add :hover svg path{
+  fill: #056C0A;
+}
+.active {
+  fill: #056C0A;
+}
+@media screen and (max-width: 498px){
+  br{
+    display: block;
+  }
+}
+
+@media screen and (max-width: 896px){
+  .post-info{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+  .images{
+    width: 100%;
+  }
+  .contact{
+    width: 100%;
+    text-align: center;
+  }
+  .description{
+    top: 0px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width:561px){
+  .gallary, .image-gallary{
+    flex-direction: column;
+  }
+  .post-image{
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+  .add, .add-inner{
+    width: 100%;
+  }
+}
+
