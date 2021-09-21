@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: "https://warm-hollows-24652.herokuapp.com"
+  apiUrl: "https://spartan-store.herokuapp.com"
 };
 
 /*
