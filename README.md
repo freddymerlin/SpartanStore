@@ -1,4 +1,3 @@
-# https://spartan-store.herokuapp.com/
 # Spartan Store Website made using MEAN stack with storage in S3 AWS Buckets
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.5.
